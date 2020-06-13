@@ -64,7 +64,7 @@ authToken for development environment is available in ./config/config.json
 Name              | Responsibility
 ----------------- | --------------------------------------------
 `start`           | Used locally to run and develop the application. It will intellegently restart when a module is changed.
-`test`            | Runs the full test suite: unit tests, eslint
+`test`            | Runs the full test suite: unit tests
 
 
 

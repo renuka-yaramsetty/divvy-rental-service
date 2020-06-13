@@ -22,7 +22,6 @@ const getTripsByEndStations = async(arrStationId, date) => {
 };
 
 const mapTripsToJSON = async(header, trips) => {
-    // const jsonArr = [];
     return trips.map(trip => {
         var jsonObj = {};
         trip.forEach((tripFieldValue, index) => {
