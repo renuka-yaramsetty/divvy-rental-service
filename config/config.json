@@ -1,0 +1,15 @@
+{
+    "development": {
+        "nodePort": 8080,
+        "authToken": "divvy-rental-dev",
+        "divvyStationsJSONUrl": "https://gbfs.divvybikes.com/gbfs/en/station_information.json"
+    },
+    "testing": {
+        "authToken": "divvy-rental-test"
+    },
+    "staging": {
+        "authToken": "divvy-rental-stage"
+    },
+    "production": {
+    }
+}

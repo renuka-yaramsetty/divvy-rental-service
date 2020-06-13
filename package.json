@@ -1,0 +1,41 @@
+{
+  "name": "divvy-rental-service",
+  "version": "1.0.0",
+  "description": "API for Chicago Divvy Bike Rental platform using the Divvy API and the historical trip data",
+  "title": "Divvy Bike Rental Service",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon ./src/server/index.js",
+    "test": "mocha --timeout=120000 --recursive --reporter spec tests/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/renuka-yaramsetty/divvy-rental-service.git"
+  },
+  "keywords": [
+    "Divvy",
+    "Bike",
+    "Rental",
+    "Service"
+  ],
+  "author": "Renuka Yaramsetty",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/renuka-yaramsetty/divvy-rental-service/issues"
+  },
+  "homepage": "https://github.com/renuka-yaramsetty/divvy-rental-service#readme",
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
+    "eslint": "^7.2.0",
+    "mocha": "^8.0.1"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "helmet": "^3.22.1",
+    "lodash": "^4.17.15",
+    "moment": "^2.26.0",
+    "moment-timezone": "^0.5.31",
+    "needle": "^2.5.0"
+  }
+}
