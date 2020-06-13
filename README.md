@@ -3,8 +3,8 @@
 * [Introduction](#introduction)
 * [Maintainers](#maintainers)
 * [Development](#development)
-    * [Endpoints]
-    * [npm scripts](#npm-scripts-(partial-list))
+    * [Endpoints](#Endpoints)
+    * [npm scripts](#npm-scripts-partial-list)
     * [Prettier Integration](#autoformatting-in-your-favorite-ide-with-prettier-integration)
 
 ## Introduction
@@ -35,7 +35,7 @@ API for Chicago Divvy Bike Rental platform using the Divvy API and the historica
 
 ### Endpoints
 
-authToken for development environemnt is available in ./config/config.json
+authToken for development environment is available in ./config/config.json
 
 1. Get the information of all stations from https://gbfs.divvybikes.com/gbfs/en/station_information.json
     ```bash
