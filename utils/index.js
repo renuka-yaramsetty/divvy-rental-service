@@ -1,7 +1,8 @@
-const formatData = require('./formatData');
-const validations = require('./validations');
+/* eslint-disable no-undef */
+const formatData = require("./formatData");
+const validations = require("./validations");
 
 module.exports = {
-    ...formatData,
-    ...validations
-}
+  ...formatData,
+  ...validations
+};

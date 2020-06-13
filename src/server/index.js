@@ -1,11 +1,10 @@
-const {nodePort} = require("../../config/config");
+/* eslint-disable no-undef */
+const { nodePort } = require("../../config/config");
 
-var http = require('http');
+var http = require("http");
 var app = require("./app");
-
 
 var server = http.createServer(app);
 server.listen(nodePort, () => {
-  console.log(`Service started on port: ${nodePort}`)
+  console.log(`Service started on port: ${nodePort}`);
 });
-

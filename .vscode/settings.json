@@ -1,11 +1,11 @@
 // Place your settings in this file to overwrite default and user settings.
 {
   // Prettier
-  "editor.formatOnSave": true,
+  "editor.formatOnSave": false,
   "[less]": {
-    "editor.formatOnSave": true
+    "editor.formatOnSave": false
   },
   "[handlebars]": {
-    "editor.formatOnSave": true
+    "editor.formatOnSave": false
   }
 }
