@@ -4,26 +4,32 @@ const router = express.Router();
 const {
   validateDate,
   validateNumber,
-  validateNumberArr
+  validateNumberArr,
+  parseReqParamArr
 } = require("../../../utils");
-const { getStations, getRidersByAgeGroup, getRecentTrips } = require("../api");
+const { getStationsData } = require("../api");
+const {
+  getRidersByAgeGroup,
+  getRecentTrips
+} = require("../services/tripService");
 
 router.get("/", async (req, res) => {
   try {
-    return res.status(200).json(await getStations());
+    return res.status(200).json(await getStationsData());
   } catch (err) {
     // log error
-    console.log(err);
+    console.error(err);
     res.status(500).json({ reason: "Error while getting stations" });
   }
 });
 
 router.get("/:stationId", async (req, res) => {
   const stationId = req.params.stationId;
+
   try {
     validateNumber(stationId);
 
-    const { data: { stations } = {} } = await getStations();
+    const { data: { stations } = {} } = await getStationsData();
     const station = stations.find((station) => station.station_id === stationId);
     if (station) {
       res.status(200).json(station);
@@ -32,7 +38,7 @@ router.get("/:stationId", async (req, res) => {
     }
   } catch (err) {
     // log error
-    console.log(err);
+    console.error(err);
     res.status(500).json({
       reason: `Error while getting station details for statonId#${stationId}`,
       errors: err
@@ -41,16 +47,19 @@ router.get("/:stationId", async (req, res) => {
 });
 
 router.get("/(:stationIds)*/ridersByAge", async (req, res) => {
-  const arrStationId = [req.params.stationIds].concat(req.params[0].split("/").slice(1));
-  const date = req.query.date;
+  const arrStationId = parseReqParamArr(req.params, "stationIds");
+  const { date, includeAllGroups } = req.query;
+
   try {
     validateNumberArr(arrStationId);
     validateDate(date);
 
-    res.status(200).json(await getRidersByAgeGroup(arrStationId, date));
+    res
+      .status(200)
+      .json(await getRidersByAgeGroup(arrStationId, date, includeAllGroups === "1"));
   } catch (err) {
     // log error
-    console.log(err);
+    console.error(err);
     res.status(500).json({
       reason: `Error while getting riders by age group for statonIds#${arrStationId}`,
       errors: err
@@ -59,9 +68,10 @@ router.get("/(:stationIds)*/ridersByAge", async (req, res) => {
 });
 
 router.get("/(:stationIds)*/recentTrips", async (req, res) => {
-  const arrStationId = [req.params.stationIds].concat(req.params[0].split("/").slice(1));
+  const arrStationId = parseReqParamArr(req.params, "stationIds");
   const date = req.query.date;
   const rowsLimit = 20;
+
   try {
     validateNumberArr(arrStationId);
     validateDate(date);
@@ -69,7 +79,7 @@ router.get("/(:stationIds)*/recentTrips", async (req, res) => {
     res.status(200).json(await getRecentTrips(arrStationId, date, rowsLimit));
   } catch (err) {
     // log error
-    console.log(err);
+    console.error(err);
     res.status(500).json({
       reason: `Error while getting recent trip details for statonIds#${arrStationId}`,
       errors: err

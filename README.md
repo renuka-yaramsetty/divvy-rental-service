@@ -56,6 +56,7 @@ authToken for development environment is available in ./config/config.json
 
    ```bash
    curl -H "Authorization: authToken" http://localhost:8080/stations/2/3/211/ridersByAge?date=2019-04-02
+   curl -H "Authorization: authToken" http://localhost:8080/stations/2/3/211/ridersByAge?date=2019-04-02&includeAllGroups=1
    ```
 
 4. Given one or more stations, return the last 20 trips that ended at each station for a single day
