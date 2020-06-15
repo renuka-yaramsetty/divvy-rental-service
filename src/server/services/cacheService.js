@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 const { cacheTripsData, cacheStationsData } = require("../api");
 
-const cacheData = async () => {
+const cacheData = () => {
   cacheStationsData();
   cacheTripsData();
 };
