@@ -14,10 +14,6 @@ describe("Get All Stations", function () {
       .set("authorization", authToken)
       .end((err, res) => {
         expect(res, JSON.stringify(res.body)).to.have.status(200);
-        console.log(
-          "res.body.data.stations[0].station_id: ",
-          res.body.data.stations[0].station_id
-        );
         expect(res.body.data.stations[0].station_id).to.eql("2");
         expect(res.body.data.stations[0].external_id).to.eql("a3a36d9e-a135-11e9-9cda-0a87ae2ba916");
         done();
@@ -30,8 +26,6 @@ describe("Get All Stations", function () {
       .get("/stations")
       .set("authorization", authToken)
       .end((err, res) => {
-        console.log(res.body.data.stations.length);
-        console.log(res.body.data.ttl);
         expect(res.body.data.stations.length).to.eql(res.body.ttl);
         done();
       });
@@ -98,7 +92,7 @@ describe("Get Riders Count by Age Group", function () {
   it("Should return JSON", function (done) {
     chai
       .request(app)
-      .get("/stations/2/ridersByAge?date=2019-04-02")
+      .get("/stations/2/ridersByAge?date=2019-04-02&includeAllGroups=1")
       .set("authorization", authToken)
       .end((err, res) => {
         expect(res, JSON.stringify(res.body)).to.have.status(200);
@@ -112,7 +106,7 @@ describe("Get Riders Count by Age Group", function () {
   it("Should return JSON for multiple station ids", function (done) {
     chai
       .request(app)
-      .get("/stations/2/3/ridersByAge?date=2019-04-02")
+      .get("/stations/2/3/ridersByAge?date=2019-04-02&includeAllGroups=1")
       .set("authorization", authToken)
       .end((err, res) => {
         expect(res, JSON.stringify(res.body)).to.have.status(200);
@@ -123,10 +117,21 @@ describe("Get Riders Count by Age Group", function () {
         done();
       });
   });
-  it("Should always return all 6 age groups", function (done) {
+  it("Should return all 0 age groups if includeAllGroups is not provided for station#1", function (done) {
     chai
       .request(app)
       .get("/stations/1/ridersByAge?date=2019-04-02")
+      .set("authorization", authToken)
+      .end((err, res) => {
+        expect(res, JSON.stringify(res.body)).to.have.status(200);
+        expect(res.body.length).to.eql(0);
+        done();
+      });
+  });
+  it("Should always return all 6 age groups", function (done) {
+    chai
+      .request(app)
+      .get("/stations/1/ridersByAge?date=2019-04-02&includeAllGroups=1")
       .set("authorization", authToken)
       .end((err, res) => {
         expect(res, JSON.stringify(res.body)).to.have.status(200);

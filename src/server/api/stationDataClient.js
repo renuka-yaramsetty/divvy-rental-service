@@ -16,7 +16,7 @@ const getStationsData = async () => {
    * Ideally cache should be reset with a callback when expired
    */
   if (!stationsDataStore || moment(cacheExpirationDate).isBefore(Date.now())) {
-    cacheStationsData();
+    await cacheStationsData();
   }
   return stationsDataStore;
 };

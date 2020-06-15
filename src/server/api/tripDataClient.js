@@ -7,7 +7,7 @@ let tripsDataStore = null;
 
 const getTripsData = async () => {
   if (!tripsDataStore) {
-    cacheTripsData();
+    await cacheTripsData();
   }
   return tripsDataStore;
 };
