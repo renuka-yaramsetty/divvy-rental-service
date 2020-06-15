@@ -4,7 +4,7 @@
 - [Maintainers](#maintainers)
 - [Development](#development)
   - [Endpoints](#Endpoints)
-  - [npm scripts](#npm-scripts-partial-list)
+  - [npm scripts](#npm-scripts)
 
 ## Introduction
 
@@ -40,6 +40,10 @@ API for Chicago Divvy Bike Rental platform using the Divvy API and the historica
 
 authToken for development environment is available in ./config/config.json
 
+#### Stations
+
+Stations data is cached on server start and re-cached if the cache has expired (per config, default is 24 hrs) when getStationsData is invoked
+
 1. Get the information of all stations from https://gbfs.divvybikes.com/gbfs/en/station_information.json
 
    ```bash
@@ -51,6 +55,10 @@ authToken for development environment is available in ./config/config.json
    ```bash
    curl -H "Authorization: authToken" http://localhost:8080/stations/2
    ```
+
+#### Trips
+
+Trips data is read from local file and cached on server start
 
 3. Given one or more stations, return the number of riders in the following age groups, [0-20,21-30,31-40,41-50,51+, unknown], who ended their trip at that station for a given day
 
@@ -64,7 +72,7 @@ authToken for development environment is available in ./config/config.json
    curl -H "Authorization: authToken" http://localhost:8080/stations/2/3/recentTrips?date=2019-04-02
    ```
 
-### npm scripts (partial list)
+### npm scripts
 
 | Name    | Responsibility                                                                                           |
 | ------- | -------------------------------------------------------------------------------------------------------- |

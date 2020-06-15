@@ -12,7 +12,7 @@ let cacheExpirationDate = null;
 const getStationsData = async () => {
 
   /*
-   * Resets cache on server starts and if the cache has expired when getStationsData is called by a request.
+   * Stations data is cached on server start and re-cached if the cache has expired (per config, default is 24 hrs) when getStationsData is invoked.
    * Ideally cache should be reset with a callback when expired
    */
   if (!stationsDataStore || moment(cacheExpirationDate).isBefore(Date.now())) {

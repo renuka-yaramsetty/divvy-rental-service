@@ -3,7 +3,7 @@
         "nodePort": 8080,
         "authToken": "divvy-rental-dev",
         "divvyStationsJSONUrl": "https://gbfs.divvybikes.com/gbfs/en/station_information.json",
-        "stationsCacheExpiresInMins": 1
+        "stationsCacheExpiresInMins": 1440
     },
     "testing": {
         "authToken": "divvy-rental-test"

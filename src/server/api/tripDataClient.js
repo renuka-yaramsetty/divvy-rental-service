@@ -6,6 +6,7 @@ const fs = require("fs").promises;
 let tripsDataStore = null;
 
 const getTripsData = async () => {
+  // Trips data is read from local file and cached on server start
   if (!tripsDataStore) {
     await cacheTripsData();
   }
