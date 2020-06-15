@@ -60,7 +60,7 @@ const getRecentTrips = async (arrStationId, date, rowsLimit = 20) => {
 
   return trips
     .sort((a, b) => a[END_TIME] > b[END_TIME] ? -1 : 1)
-    .filter((trip, index) => index < rowsLimit);
+    .slice(0, rowsLimit);
 };
 
 module.exports = {
